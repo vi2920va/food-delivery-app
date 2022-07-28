@@ -16,8 +16,8 @@ import DismissKeyboardView from '@src/components/atoms/DismissKeyboardView';
 import axios, {AxiosError} from 'axios';
 import {RootStackParamList} from '@src/AppInner';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-type SignUpScreenProps = NativeStackScreenProps<RootStackParamList, 'SignUp'>;
 
+type SignUpScreenProps = NativeStackScreenProps<RootStackParamList, 'SignUp'>;
 const SignUp = ({navigation}: SignUpScreenProps) => {
   const [loading, setLoading] = useState(false);
   const [name, setName] = useState('');
@@ -56,7 +56,7 @@ const SignUp = ({navigation}: SignUpScreenProps) => {
 
   const onSubmit = useCallback(async () => {
     if (loading) {
-      return loading;
+      return;
     }
 
     if (!name || !name.trim()) {
@@ -92,23 +92,21 @@ const SignUp = ({navigation}: SignUpScreenProps) => {
 
     try {
       setLoading(true);
-      const response = await axios.post(
-        `${__DEV__ ? 'localhost:3000' : 'url'}/User`,
-        {
-          name,
-          email,
-          password,
-        },
-      );
-      setLoading(false);
+      const API_URL = 'http://127.0.0.1:3105';
+      const response = await axios.post(`${API_URL}/user`, {
+        email,
+        name,
+        password,
+      });
       Alert.alert('알림', '회원가입 되었습니다.');
+      navigation.navigate('SignIn');
       console.log(response);
     } catch (error) {
-      const errorResponse = (error as AxiosError).response;
-      navigation.navigate('SignIn');
-      console.error();
+      console.log('error', error);
+      console.log(email, name, password);
+      const errorResponse = (error as AxiosError<{message: string}>).response;
       if (errorResponse) {
-        Alert.alert('알림', errorResponse.data.message);
+        Alert.alert('알림', errorResponse.data?.message);
       }
     } finally {
       setLoading(false);
