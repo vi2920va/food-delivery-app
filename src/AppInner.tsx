@@ -32,12 +32,12 @@ const AppInner = () => {
       <Tab.Screen
         name="Orders"
         component={Orders}
-        options={{title: '오더목록'}}
+        options={{title: '주문목록'}}
       />
       <Tab.Screen
         name="Delivery"
         component={Delivery}
-        options={{headerShown: false}}
+        options={{title: '배달', headerShown: false}}
       />
       <Tab.Screen
         name="Mypage"

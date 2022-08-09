@@ -58,12 +58,12 @@ const SignIn = ({navigation}: SignInScreenProps) => {
         password,
       });
       Alert.alert('알림', '로그인 되었습니다.');
-      console.log(response.data);
       dispatch(
         userSlice.actions.setUser({
           name: response.data.data.name,
           email: response.data.data.email,
           accessToken: response.data.data.accessToken,
+          refreshToken: response.data.data.refreshToken,
         }),
       );
       await EncryptedStorage.setItem(
