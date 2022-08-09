@@ -1,0 +1,34 @@
+// prettier-ignore
+{
+  "compilerOptions": {
+    "target": "esnext",                                 
+    "lib": ["es2017"],                                 
+    "jsx": "react-native",                              
+    "module": "commonjs",                            
+    "moduleResolution": "node",                          
+    "allowJs": true,                                     
+    "noEmit": true,                                      
+    "isolatedModules": true,                           
+    "allowSyntheticDefaultImports": true,             
+    "esModuleInterop": true,                             
+    "forceConsistentCasingInFileNames": true,           
+    "strict": true,                                     
+    "skipLibCheck": true,                                
+    "baseUrl": "./",
+    "paths": {
+      "@src/*": ["src/*"]
+    },
+  },
+  "include": [
+    "__tests__",
+    "src",
+    ".eslintrc.js",
+    "babel.config.js",
+    "index.js",
+    "metro.config.js",
+    "@types"
+, "react-native.config.js"  ],
+  "exclude": [
+    "node_modules", "jest.config.js"
+  ]
+}
